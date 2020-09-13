@@ -1,0 +1,22 @@
+{
+  "name": "meny",
+  "version": "0.0.1",
+  "author": "cloydlau",
+  "license": "MIT",
+  "description": "A 3D menu. Adding npm and ES module support for https://github.com/hakimel/Meny",
+  "keywords": [],
+  "private": false,
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "scripts": {
+  },
+  "dependencies": {
+  },
+  "peerDependencies": {
+  },
+  "devDependencies": {
+  }
+}

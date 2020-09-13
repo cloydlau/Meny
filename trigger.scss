@@ -1,0 +1,63 @@
+/**
+ * Hint graphic that appears while menu is inactive
+ */
+.meny__trigger {
+  position: absolute;
+  z-index: 10;
+  border: 20px solid transparent;
+  transition: opacity 0.4s ease 0.4s;
+
+  animation-name: meny__trigger;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-play-state: running;
+}
+
+@keyframes meny__trigger {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    transform: scale3d(1.2, 1.2, 1.2);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.meny-left .meny__trigger {
+  left: 14px;
+  top: 50%;
+  margin-top: -16px;
+  border-left: 30px solid #333;
+}
+
+.meny-right .meny__trigger {
+  right: 14px;
+  top: 50%;
+  margin-top: -16px;
+  border-right: 16px solid #333;
+}
+
+.meny-top .meny__trigger {
+  left: 50%;
+  top: 14px;
+  margin-left: -16px;
+  border-top: 16px solid #333;
+}
+
+.meny-bottom .meny__trigger {
+  left: 50%;
+  bottom: 14px;
+  margin-left: -16px;
+  border-bottom: 16px solid #333;
+}
+
+.meny-active .meny__trigger {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
