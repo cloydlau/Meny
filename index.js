@@ -6,7 +6,7 @@
  * Created by Hakim El Hattab (http://hakim.se, @hakimel)
  */
 
-import './trigger.scss'
+import './trigger.css'
 
 // Date.now polyfill
 if (typeof Date.now !== 'function') Date.now = function () { return new Date().getTime() }
