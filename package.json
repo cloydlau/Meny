@@ -1,22 +1,25 @@
 {
   "name": "meny",
-  "version": "0.0.2",
-  "author": "cloydlau",
+  "version": "0.1.0",
   "license": "MIT",
   "description": "A 3D menu. Adding npm and ES module support for https://github.com/hakimel/Meny",
-  "keywords": [],
   "private": false,
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": ""
-  },
+  "main": "dist/meny.umd.min.js",
   "scripts": {
+    "dev": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lib": "vue-cli-service build --target lib --name meny src/index.js"
   },
-  "dependencies": {
-  },
-  "peerDependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
+    "@vue/cli-plugin-babel": "^4.5.0",
+    "@vue/cli-plugin-typescript": "^4.5.0",
+    "@vue/cli-service": "^4.5.0",
+    "normalize.css": "^8.0.1",
+    "sass": "^1.29.0",
+    "sass-loader": "^10.1.0",
+    "typescript": "^4.1.0",
+    "vue": "^2.6.12",
+    "vue-template-compiler": "^2.6.12"
   }
 }

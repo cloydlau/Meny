@@ -6,9 +6,9 @@
 
 ### Features
 
-- √ ES module.
-- √ 0 dependency.
-- √ BEM css.
+- √ ES module
+- √ 0 dependency
+- √ BEM css
 
 <br/>
 

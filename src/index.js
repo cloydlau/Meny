@@ -6,12 +6,12 @@
  * Created by Hakim El Hattab (http://hakim.se, @hakimel)
  */
 
-import './trigger.css'
+import './trigger.scss'
 
 // Date.now polyfill
 if (typeof Date.now !== 'function') Date.now = function () { return new Date().getTime() }
 
-var Meny = {
+const Meny = {
 
   // Creates a new instance of Meny
   create: function (options) {
@@ -28,20 +28,20 @@ var Meny = {
       }
 
       // Constants
-      var POSITION_T = 'top',
+      let POSITION_T = 'top',
         POSITION_R = 'right',
         POSITION_B = 'bottom',
         POSITION_L = 'left'
 
       // Feature detection for 3D transforms
-      var supports3DTransforms = 'WebkitPerspective' in document.body.style ||
+      let supports3DTransforms = 'WebkitPerspective' in document.body.style ||
         'MozPerspective' in document.body.style ||
         'msPerspective' in document.body.style ||
         'OPerspective' in document.body.style ||
         'perspective' in document.body.style
 
       // Default options, gets extended by passed in arguments
-      var config = {
+      let config = {
         width: 300,
         height: 300,
         position: POSITION_L,
@@ -56,7 +56,7 @@ var Meny = {
       }
 
       // Cache references to DOM elements
-      var dom = {
+      let dom = {
         menu: options.menuElement,
         contents: options.contentsElement,
         wrapper: options.menuElement.parentNode,
@@ -64,7 +64,7 @@ var Meny = {
       }
 
       // State and input
-      var indentX = dom.wrapper.offsetLeft,
+      let indentX = dom.wrapper.offsetLeft,
         indentY = dom.wrapper.offsetTop,
         touchStartX = null,
         touchStartY = null,
@@ -74,7 +74,7 @@ var Meny = {
         isMouseDown = false
 
       // Precalculated transform and style states
-      var menuTransformOrigin,
+      let menuTransformOrigin,
         menuTransformClosed,
         menuTransformOpened,
         menuStyleClosed,
@@ -86,11 +86,11 @@ var Meny = {
         contentsStyleClosed,
         contentsStyleOpened
 
-      var originalStyles = {},
+      let originalStyles = {},
         addedEventListeners = []
 
       // Ongoing animations (for fallback mode)
-      var menuAnimation,
+      let menuAnimation,
         contentsAnimation,
         coverAnimation
 
@@ -121,8 +121,8 @@ var Meny = {
       function setupPositions () {
         menuTransformOpened = ''
         contentsTransformClosed = ''
-        var menuAngle = config.angle
-        var contentsAngle = config.angle / -2
+        let menuAngle = config.angle
+        let contentsAngle = config.angle / -2
 
         switch (config.position) {
           case POSITION_T:
@@ -239,7 +239,7 @@ var Meny = {
        */
       function setupMenu () {
         // Shorthand
-        var style = dom.menu.style
+        let style = dom.menu.style
 
         switch (config.position) {
           case POSITION_T:
@@ -286,7 +286,7 @@ var Meny = {
        */
       function setupContents () {
         // Shorthand
-        var style = dom.contents.style
+        let style = dom.contents.style
 
         originalStyles.contents = style.cssText
 
@@ -421,7 +421,7 @@ var Meny = {
         Meny.unbindEvent(document, 'mouseup', onMouseUp)
         Meny.unbindEvent(document, 'mousemove', onMouseMove)
 
-        for (var i in addedEventListeners) {
+        for (let i in addedEventListeners) {
           this.removeEventListener(addedEventListeners[i][0], addedEventListeners[i][1])
         }
 
@@ -438,7 +438,7 @@ var Meny = {
         // Prevent opening/closing when mouse is down since
         // the user may be selecting text
         if (!isMouseDown) {
-          var x = event.clientX - indentX,
+          let x = event.clientX - indentX,
             y = event.clientY - indentY
 
           switch (config.position) {
@@ -451,7 +451,7 @@ var Meny = {
               break
 
             case POSITION_R:
-              var w = dom.wrapper.offsetWidth
+              let w = dom.wrapper.offsetWidth
               if (x < w - config.width) {
                 close()
               } else if (x > w - config.threshold) {
@@ -460,7 +460,7 @@ var Meny = {
               break
 
             case POSITION_B:
-              var h = dom.wrapper.offsetHeight
+              let h = dom.wrapper.offsetHeight
               if (y < h - config.height) {
                 close()
               } else if (y > h - config.threshold) {
@@ -496,7 +496,7 @@ var Meny = {
         touchMoveX = event.touches[0].clientX - indentX
         touchMoveY = event.touches[0].clientY - indentY
 
-        var swipeMethod = null
+        let swipeMethod = null
 
         // Check for swipe gestures in any direction
 
@@ -529,7 +529,7 @@ var Meny = {
       }
 
       function onTap () {
-        var isOverContent = (config.position === POSITION_T && touchStartY > config.height) ||
+        let isOverContent = (config.position === POSITION_T && touchStartY > config.height) ||
           (config.position === POSITION_R && touchStartX < dom.wrapper.offsetWidth - config.width) ||
           (config.position === POSITION_B && touchStartY < dom.wrapper.offsetHeight - config.height) ||
           (config.position === POSITION_L && touchStartX > config.width)
@@ -613,10 +613,10 @@ var Meny = {
   animate: function (element, properties, duration, callback) {
     return (function () {
       // Will hold start/end values for all properties
-      var interpolations = {}
+      let interpolations = {}
 
       // Format properties
-      for (var p in properties) {
+      for (let p in properties) {
         interpolations[p] = {
           start: parseFloat(element.style[p]) || 0,
           end: parseFloat(properties[p]),
@@ -624,17 +624,17 @@ var Meny = {
         }
       }
 
-      var animationStartTime = Date.now(),
+      let animationStartTime = Date.now(),
         animationTimeout
 
       // Takes one step forward in the animation
       function step () {
         // Ease out
-        var progress = 1 - Math.pow(1 - ((Date.now() - animationStartTime) / duration), 5)
+        let progress = 1 - Math.pow(1 - ((Date.now() - animationStartTime) / duration), 5)
 
         // Set style to interpolated value
-        for (var p in interpolations) {
-          var property = interpolations[p]
+        for (let p in interpolations) {
+          let property = interpolations[p]
           element.style[p] = property.start + ((property.end - property.start) * progress) + property.unit
         }
 
@@ -668,7 +668,7 @@ var Meny = {
    * If there's a conflict, object b takes precedence.
    */
   extend: function (a, b) {
-    for (var i in b) {
+    for (let i in b) {
       a[i] = b[i]
     }
   },
@@ -677,11 +677,11 @@ var Meny = {
    * Prefixes a style property with the correct vendor.
    */
   prefix: function (property, el) {
-    var propertyUC = property.slice(0, 1).toUpperCase() + property.slice(1),
+    let propertyUC = property.slice(0, 1).toUpperCase() + property.slice(1),
       vendors = ['Webkit', 'Moz', 'O', 'ms']
 
-    for (var i = 0, len = vendors.length; i < len; i++) {
-      var vendor = vendors[i]
+    for (let i = 0, len = vendors.length; i < len; i++) {
+      let vendor = vendors[i]
 
       if (typeof (el || document.body).style[vendor + propertyUC] !== 'undefined') {
         return vendor + propertyUC
@@ -728,8 +728,8 @@ var Meny = {
   },
 
   bindEventOnce: function (element, ev, fn) {
-    var me = this
-    var listener = function () {
+    let me = this
+    let listener = function () {
       me.unbindEvent(element, ev, listener)
       fn.apply(this, arguments)
     }
@@ -742,7 +742,7 @@ var Meny = {
    */
   dispatchEvent: function (element, type, properties) {
     if (element) {
-      var event = document.createEvent('HTMLEvents', 1, 2)
+      let event = document.createEvent('HTMLEvents', 1, 2)
       event.initEvent(type, true, true)
       Meny.extend(event, properties)
       element.dispatchEvent(event)
@@ -753,7 +753,7 @@ var Meny = {
    * Retrieves query string as a key/value hash.
    */
   getQuery: function () {
-    var query = {}
+    let query = {}
 
     location.search.replace(/[A-Z0-9]+?=([\w|:|\/\.]*)/gi, function (a) {
       query[a.split('=').shift()] = a.split('=').pop()
@@ -761,8 +761,6 @@ var Meny = {
 
     return query
   }
-
 }
 
 export default Meny
-
