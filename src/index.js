@@ -170,7 +170,7 @@ const Meny = {
           default:
             // Primary transform:
             menuTransformOrigin = '100% 50%'
-            menuTransformClosed = 'translateX( -100% ) translateX( ' + config.overlap + 'px ) scale( 1.01 ) rotateY( ' + -menuAngle + 'deg )'
+            menuTransformClosed = 'translateX( -100% ) translateX( ' + config.overlap + 'px ) scale( 1.00 ) rotateY( ' + -menuAngle + 'deg )'
             contentsTransformOrigin = '0 50%'
             contentsTransformOpened = 'translateX( ' + config.width + 'px ) rotateY( ' + -contentsAngle + 'deg )'
 
